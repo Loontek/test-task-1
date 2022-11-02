@@ -1,0 +1,413 @@
+@import "./styles/fonts";
+@import "./styles/normalize";
+@import "./styles/colors";
+
+body {
+	font-family: 'Montserrat';
+	background: var(--bg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	min-height: 100vh;
+	padding: 20px 50px;
+
+	@media all and (max-width:800px) {
+		padding: 20px 10px;
+	}
+}
+
+.container {
+	width: 100%;
+	max-width: 846px;
+}
+
+.category-buttons {
+	display: flex;
+	width: 100%;
+	max-width: 846px;
+
+	@media all and (max-width:800px) {
+		flex-direction: column;
+		gap: 20px;
+		display: none;
+	}
+}
+
+.category-btn {
+	max-width: 288px;
+	width: 100%;
+	height: 73px;
+	background: var(--grey);
+	border-radius: 20px 20px 0px 0px;
+	border: none;
+	outline: none;
+	padding: 22px 20px;
+	box-sizing: border-box;
+	font-weight: 500;
+	font-size: 22px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+		
+	@media all and (max-width:800px) {
+		justify-content: space-between;
+		min-width: 335px;
+		border-radius: 20px;
+		font-size: 20px;
+		background: var(--white);
+		margin-top: 20px;
+	}
+
+	&::after {
+		content: url("../public/assets/fi-rr-angle-small-down.svg");
+		display: none;
+		position: relative;
+		top: 3px;
+		transform: rotate(0);
+
+		@media all and (max-width:800px) {
+			display: block;
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&_active {
+		background: var(--white);
+		color: var(--blue);
+
+		&::after {
+			transform: rotate(180deg);
+			top: -3px;
+		}
+
+		@media all and (max-width:800px) {
+			border-radius: 20px 20px 0 0;
+		}
+	}
+}
+
+.product-card {
+	display: none;
+	max-width: 846px;
+	width: 100%;
+	height: auto;
+	background: var(--white);
+	padding: 40px 60px;
+	box-sizing: border-box;
+	overflow: hidden;
+	transition: max-height 1s;
+
+	&_toggled {
+		
+		@media all and (max-width:800px) {
+			transition: max-height 1s;
+			max-height:1163px;
+		}
+	}
+	
+	@media all and (max-width:800px) {
+		max-width: 335px;
+		padding: 30px 20px;
+		border-radius: 0 0 20px 20px;
+	}
+
+	&__top {
+		width: 100%;
+		display: flex;
+		gap: 11px;
+		border-bottom: 1px solid var(--grey);
+		padding-bottom: 40px;
+		box-sizing: border-box;
+
+		@media all and (max-width:800px) {
+			flex-direction: column;
+		}
+	}
+
+	&__bottom {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+		padding-top: 40px;
+		box-sizing: border-box;
+	}
+
+	&__about {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	&__img {
+		object-fit: cover;
+		position: relative;
+		right: 60px;
+
+		&_desktop {
+			display: block;
+
+			@media all and (max-width:800px) {
+				display: none;
+			}
+		}
+
+		&_mobile {
+			display: none;
+
+			@media all and (max-width:800px) {
+				display: block;
+				position: static;
+			}
+		}
+	}
+
+	&__title {
+		color: var(--main);
+		font-weight: 700;
+		font-size: 26px;
+		margin: 0;
+		line-height: 39px;
+
+		@media all and (max-width:800px) {
+			font-size: 24px;
+			line-height: 36px;
+		}
+	}
+
+	&__desc {
+		color: var(--text);
+		font-weight: 400;
+		font-size: 16px;
+		margin: 0;
+		line-height: 24px;
+
+		@media all and (max-width:800px) {
+			font-size: 14px;
+			line-height: 21px;
+		}
+	}
+}
+
+.specifications {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	&__title {
+		margin: 0;
+	}
+
+	&__list {
+		margin: 0;
+		padding: 0;
+		width: 90%;
+		height: max-content;
+		max-height: 64px;
+		display: flex;
+		flex-direction: column;
+		align-content: flex-start;
+		flex-wrap: wrap;
+		color: var(--text);
+		font-weight: 400;
+		font-size: 16px;
+		row-gap: 16px;
+		align-content: stretch;
+		list-style-position: inside;
+
+		@media all and (max-width:800px) {
+			font-size: 14px;
+			flex-wrap: nowrap;
+			max-height: none;
+		}
+
+		&_icon-marker {
+			list-style-image: url("../public/assets/fi-rr-bike.svg");
+			row-gap: 8px;
+		}
+	}
+
+	&__item {
+		width: max-content;
+		line-height: 24px;
+
+		@media all and (max-width:800px) {
+			line-height: 21px;
+		}
+	}
+}
+
+.add-specification {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	&>div {
+		width: 100%;
+		height: 52px;
+		display: flex;
+		gap: 24px;
+
+		@media all and (max-width:800px) {
+			flex-direction: column;
+			height: max-content;
+			gap: 15px;
+		}
+	}
+
+	&__title {
+		margin: 0;	
+	}
+
+	&__input {
+		width: 100%;
+		height: 100%;
+		max-width: 351px;
+	}
+
+	&__submit-btn {
+		max-width: 128px;
+		width: 100%;
+
+		@media all and (max-width:800px) {
+			max-width: none;
+			height: 52px;
+		}
+	}
+}
+
+.third-title {
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 27px;
+	color: var(--main);
+
+	@media all and (max-width:800px) {
+		font-size: 16px;
+		line-height: 24px;
+	}
+}
+
+.spec-input {
+	background: var(--white);
+	border: 1px solid var(--grey);
+	outline: none;
+	border-radius: 16px;
+	padding: 14px 16px;
+	box-sizing: border-box;
+	font-weight: 400;
+	font-size: 16px;
+	color: var(--main);
+
+	@media all and (max-width:800px) {
+		font-size: 14px;
+		line-height: 21px;
+	}
+
+	&::placeholder {
+		color: var(--grey);
+	}
+
+	&:focus {
+		border: 1px solid var(--blue);
+	}
+}
+
+.submit-btn {
+	background: var(--blue);
+	border-radius: 16px;
+	color: var(--white);
+	border: none;
+	outline: none;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	transition: background .2s;
+	cursor: pointer;
+
+	@media all and (max-width:800px) {
+		font-size: 14px;
+		line-height: 21px;
+	}
+
+	&:hover {
+		background: var(--submit-btn-hover);
+	}
+
+	&:active {
+		background: var(--submit-btn-click);
+	}
+}
+
+.reset-btn {
+	border: none;
+	outline: none;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	transition: background .2s;
+	border-radius: 16px;
+	background: var(--white);
+	color: var(--main);
+	cursor: pointer;
+
+	@media all and (max-width:800px) {
+		font-size: 14px;
+		line-height: 21px;
+	}
+
+	&:hover {
+		color: var(--reset-btn-hover);
+	}
+
+	&:active {
+		color: var(--reset-btn-click);
+	}
+}
+
+.control-buttons {
+	width: 100%;
+	height: 112px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 30px 36px;
+	box-sizing: border-box;
+	background: var(--white);
+	box-shadow: 0px 10px 40px rgba(12, 12, 12, 0.1);
+	border-radius: 20px;
+
+	@media all and (max-width:800px) {
+		padding: 30px 20px;
+		gap: 15px;
+	}
+
+	&__submit-btn {
+		width: 100%;
+		max-width: 92px;
+		height: 52px;
+
+		@media all and (max-width:800px) {
+			max-width: none;
+			width: 50%;
+		}
+	}
+
+	&__reset-btn {
+		width: 100%;
+		max-width: 112px;
+		height: 52px;
+
+		@media all and (max-width:800px) {
+			max-width: none;
+			width: 50%;
+		}
+	}
+}
